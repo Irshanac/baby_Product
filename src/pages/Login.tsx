@@ -105,142 +105,143 @@ const Login = () => {
     }
 
     return (
-        <div className="max-w-md mx-auto mt-10 p-6 border rounded shadow">
-            {/* Toggle Buttons */}
-            <div className="flex mb-6">
-                <button 
-                    type="button" 
-                    onClick={() => setIsLogin(true)} 
-                    className={`flex-1 px-4 py-2 mr-1 rounded ${isLogin ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-                >
-                    Login
-                </button>
-                <button 
-                    type="button" 
-                    onClick={() => setIsLogin(false)} 
-                    className={`flex-1 px-4 py-2 ml-1 rounded ${!isLogin ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-                >
-                    Registration
-                </button>
+        <div className="d-flex justify-content-center align-items-center vh-100">
+            <div className="col-md-4 p-4 border rounded shadow">
+                {/* Toggle Buttons */}
+                <div className="d-flex mb-4 gap-2">
+                    <button 
+                        type="button" 
+                        onClick={() => setIsLogin(true)} 
+                        className={`flex-fill btn ${isLogin ? 'btn-primary' : 'btn-light'}`}
+                    >
+                        Login
+                    </button>
+                    <button 
+                        type="button" 
+                        onClick={() => setIsLogin(false)} 
+                        className={`flex-fill btn ${!isLogin ? 'btn-primary' : 'btn-light'}`}
+                    >
+                        Registration
+                    </button>
+                </div>
+
+                {/* Conditional Rendering of Forms */}
+                {isLogin ? (
+                    <Formik
+                        initialValues={loginInitialValues}
+                        validationSchema={loginValidationSchema}
+                        onSubmit={loginSubmit}
+                    >
+                        {({ isSubmitting }) => (
+                            <Form className="space-y-4">
+                                <div className="mb-3">
+                                    <label htmlFor="username" className="form-label">Username</label>
+                                    <Field 
+                                        type="text" 
+                                        name="username" 
+                                        id="username" 
+                                        className="form-control"
+                                    />
+                                    <ErrorMessage name="username" component="div" className="text-danger" />
+                                </div>
+
+                                <div className="mb-3">
+                                    <label htmlFor="password" className="form-label">Password</label>
+                                    <Field 
+                                        type="password" 
+                                        name="password" 
+                                        id="password" 
+                                        className="form-control"
+                                    />
+                                    
+                                    <ErrorMessage name="password" component="div" className="text-danger" />
+                                </div>
+
+                                <button 
+                                    type="submit" 
+                                    disabled={isSubmitting} 
+                                    className="btn btn-success w-50 mx-auto d-flex justify-content-center align-items-center"
+                                >
+                                    {isSubmitting ? 'Logging in...' : 'Login'}
+                                </button>
+                            </Form>
+                        )}
+                    </Formik>
+                ) : (
+                    <Formik
+                        initialValues={registrationInitialValues}
+                        validationSchema={registrationValidationSchema}
+                        onSubmit={registrationSubmit}
+                    >
+                        {({ isSubmitting }) => (
+                            <Form className="space-y-4">
+                                <div className="mb-3">
+                                    <label htmlFor="name" className="form-label">Name</label>
+                                    <Field 
+                                        type="text" 
+                                        name="name" 
+                                        id="name" 
+                                        className="form-control"
+                                    />
+                                    <ErrorMessage name="name" component="div" className="text-danger" />
+                                </div>
+
+                                <div className="mb-3">
+                                    <label htmlFor="username" className="form-label">Username</label>
+                                    <Field 
+                                        type="text" 
+                                        name="username" 
+                                        id="username" 
+                                        className="form-control"
+                                    />
+                                    <ErrorMessage name="username" component="div" className="text-danger" />
+                                </div>
+
+                                <div className="mb-3">
+                                    <label htmlFor="email" className="form-label">Email</label>
+                                    <Field 
+                                        type="email" 
+                                        name="email" 
+                                        id="email" 
+                                        className="form-control"
+                                    />
+                                    <ErrorMessage name="email" component="div" className="text-danger" />
+                                </div>
+
+                                <div className="mb-3">
+                                    <label htmlFor="password" className="form-label">Password</label>
+                                    <Field 
+                                        type="password" 
+                                        name="password" 
+                                        id="password" 
+                                        className="form-control"
+                                    />
+                                    <ErrorMessage name="password" component="div" className="text-danger" />
+                                </div>
+
+                                <div className="mb-3">
+                                    <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+                                    <Field 
+                                        type="password" 
+                                        name="confirmPassword" 
+                                        id="confirmPassword" 
+                                        className="form-control"
+                                    />
+                                    <ErrorMessage name="confirmPassword" component="div" className="text-danger" />
+                                </div>
+
+                                <button 
+                                    type="submit" 
+                                    disabled={isSubmitting} 
+                                   className="btn btn-success w-50 mx-auto d-flex justify-content-center align-items-center"
+                                >
+                                    {isSubmitting ? 'Registering...' : 'Register'}
+                                </button>
+                            </Form>
+                        )}
+                    </Formik>
+                )}
             </div>
-
-            {/* Conditional Rendering of Forms */}
-            {isLogin ? (
-                <Formik
-                    key="login" // Added key prop
-                    initialValues={loginInitialValues}
-                    validationSchema={loginValidationSchema}
-                    onSubmit={loginSubmit}
-                >
-                    {({ isSubmitting }) => (
-                        <Form className="space-y-4">
-                            <div>
-                                <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
-                                <Field 
-                                    type="text" 
-                                    name="username" 
-                                    id="username" 
-                                    className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-                                />
-                                <ErrorMessage name="username" component="div" className="text-red-500 text-sm" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
-                                <Field 
-                                    type="password" 
-                                    name="password" 
-                                    id="password" 
-                                    className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-                                />
-                                <ErrorMessage name="password" component="div" className="text-red-500 text-sm" />
-                            </div>
-
-                            <button 
-                                type="submit" 
-                                disabled={isSubmitting} 
-                                className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
-                            >
-                                {isSubmitting ? 'Logging in...' : 'Login'}
-                            </button>
-                        </Form>
-                    )}
-                </Formik>
-            ) : (
-                <Formik
-                    key="registration" // Added key prop
-                    initialValues={registrationInitialValues}
-                    validationSchema={registrationValidationSchema}
-                    onSubmit={registrationSubmit}
-                >
-                    {({ isSubmitting }) => (
-                        <Form className="space-y-4">
-                            <div>
-                                <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
-                                <Field 
-                                    type="text" 
-                                    name="name" 
-                                    id="name" 
-                                    className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-                                />
-                                <ErrorMessage name="name" component="div" className="text-red-500 text-sm" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
-                                <Field 
-                                    type="text" 
-                                    name="username" 
-                                    id="username" 
-                                    className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-                                />
-                                <ErrorMessage name="username" component="div" className="text-red-500 text-sm" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-                                <Field 
-                                    type="email" 
-                                    name="email" 
-                                    id="email" 
-                                    className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-                                />
-                                <ErrorMessage name="email" component="div" className="text-red-500 text-sm" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
-                                <Field 
-                                    type="password" 
-                                    name="password" 
-                                    id="password" 
-                                    className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-                                />
-                                <ErrorMessage name="password" component="div" className="text-red-500 text-sm" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Confirm Password</label>
-                                <Field 
-                                    type="password" 
-                                    name="confirmPassword" 
-                                    id="confirmPassword" 
-                                    className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-                                />
-                                <ErrorMessage name="confirmPassword" component="div" className="text-red-500 text-sm" />
-                            </div>
-
-                            <button 
-                                type="submit" 
-                                disabled={isSubmitting} 
-                                className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
-                            >
-                                {isSubmitting ? 'Registering...' : 'Register'}
-                            </button>
-                        </Form>
-                    )}
-                </Formik>
-            )}
         </div>
     );
 };
