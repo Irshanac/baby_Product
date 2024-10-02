@@ -115,9 +115,10 @@
       "name": "kurtha",
       "description": "baby dess ",
       "price": 300,
-      "quantity": 1,
+      "quantity": 0,
       "url":"https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQu4VySWDAPIAvr2ikqLbfUG-Sld4Yl_KaSd0IxBXamGMpAsKBbyqAxCtTRwzPsWVutMKzdC3Ho2y3ghnzwutnadS2DN0DUMfzerwFEAWK-R55fHYq5a_7D1A",
       "category": "Dress"
     }
-]
+],
+"cart":[]
 }
