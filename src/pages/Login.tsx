@@ -3,11 +3,13 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as yup from 'yup';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Toaster, toast } from 'react-hot-toast';
+// Removed react-toastify CSS import
 
 const Login = () => {
     const [isLogin, setIsLogin] = useState(true);
     const navigate = useNavigate(); // Hook from React Router
-
+ 
     // Initial values and validation for the login form
     const loginInitialValues = { username: "", password: "" };
     const loginValidationSchema = yup.object({
@@ -18,14 +20,14 @@ const Login = () => {
             .matches(/[a-z]/, "Password should contain at least one lowercase letter")
             .matches(/[A-Z]/, "Password should contain at least one uppercase letter")
             .matches(/[0-9]/, "Password should contain at least one number")
-            .matches(/[@$!%*?&#]/, "Password should contain at least one special character")
+            .matches(/[@$!%*?&#_]/, "Password should contain at least one special character")
     });
 
     // Initial values and validation for the registration form
     const registrationInitialValues = { name: "", username: "", email: "", password: "", confirmPassword: "" };
     const registrationValidationSchema = yup.object({
         name: yup.string().required("Please provide a name"),
-        username: yup.string().required("Please provide a username"),
+        username: yup.string().required("Please provide a username").min(2,"minimun 2 latters requires"),
         email: yup.string().email("Please provide a valid email").required("Email is required"),
         password: yup.string()
             .required("Please provide a password")
@@ -33,7 +35,7 @@ const Login = () => {
             .matches(/[a-z]/, "Password should contain at least one lowercase letter")
             .matches(/[A-Z]/, "Password should contain at least one uppercase letter")
             .matches(/[0-9]/, "Password should contain at least one number")
-            .matches(/[@$!%*?&#]/, "Password should contain at least one special character"),
+            .matches(/[@$!%*?&#_]/, "Password should contain at least one special character"),
         confirmPassword: yup.string()
             .oneOf([yup.ref('password')], 'Passwords must match')
             .required("Please confirm your password")
@@ -51,20 +53,20 @@ const Login = () => {
                 }
             });
 
-            console.log(response.data); // Log the response data for debugging
+            console.log("Login response data:", response.data); // Log the response data for debugging
 
             if (response.data.length > 0) { // Check if any user matches
-                alert("Login successful");
+                toast.success("Login successful!");
                 resetForm(); // Reset the form fields
                 navigate("/"); // Redirect to home or dashboard
             }
             else {
-                alert("Invalid username or password");
+                toast.error("Invalid username or password");
             }
         }
         catch (error) {
             console.error("Error during login", error);
-            alert("An error occurred during login. Please try again.");
+            toast.error("An error occurred during login. Please try again.");
         }
     };
 
@@ -76,7 +78,7 @@ const Login = () => {
                 params: { username: values.username }
             });
             if (existingUsername.data.length > 0) {
-                alert("Username already exists. Please choose another one.");
+                toast.error("Username already exists. Please choose another one.");
                 return;
             }
 
@@ -85,7 +87,7 @@ const Login = () => {
                 params: { email: values.email }
             });
             if (existingEmail.data.length > 0) {
-                alert("Email already exists. You can login.");
+                toast.error("Email already exists. You can login.");
                 return;
             }
 
@@ -95,12 +97,13 @@ const Login = () => {
             // Post the new user data to JSON Server
             const response = await axios.post("http://localhost:5000/users", userData);
             console.log("Registration success", response.data);
-            alert("Registration successful");
+            toast.success("Registration successful");
             resetForm(); // Reset the form fields after successful registration
+            navigate("/login");
         }
         catch (error) {
             console.log("Registration failed", error);
-            alert("Registration failed. Please try again.");
+            toast.error("Registration failed. Please try again.");
         }
     }
 
@@ -124,7 +127,7 @@ const Login = () => {
                         Registration
                     </button>
                 </div>
-
+                <Toaster/>
                 {/* Conditional Rendering of Forms */}
                 {isLogin ? (
                     <Formik
@@ -164,6 +167,7 @@ const Login = () => {
                                 >
                                     {isSubmitting ? 'Logging in...' : 'Login'}
                                 </button>
+                                {/* Removed Toaster from here */}
                             </Form>
                         )}
                     </Formik>
@@ -237,6 +241,7 @@ const Login = () => {
                                 >
                                     {isSubmitting ? 'Registering...' : 'Register'}
                                 </button>
+                                {/* Removed Toaster from here */}
                             </Form>
                         )}
                     </Formik>
