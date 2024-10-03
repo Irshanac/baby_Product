@@ -62,6 +62,24 @@ const ProductList = () => {
             alert("Failed to add product to the cart. Please try again.");
         }
     };
+    const addToFavorite= async(product)=>{
+        try{
+            const response=await axios.get("http://localhost:5000/favorite")
+            const oldFavorite=response.data
+            const cheking=oldFavorite.find((favoritre)=>favoritre.id===product.id)
+            if(cheking)
+            {
+                return
+            }
+            else{
+                await axios.post("http://localhost:5000/favorite",product)
+            }
+        }catch(error)
+        {
+            console.log(error.message);
+            
+        }
+    }
     
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center bg-gray-100 mx-3">
@@ -85,7 +103,7 @@ const ProductList = () => {
                         <button className='bg-primary/80 hover:bg-primary hover:scale-105 transition transform duration-200 text-white py-2 px-4 rounded-full flex items-center gap-2' onClick={()=>addToCart(product)}>
                             <span className="transition-transform duration-200">Cart</span>
                         </button>
-                        <button onClick={() => alert("Added to favorites")}> 
+                        <button onClick={() => addToFavorite(product)}> 
                             <MdFavoriteBorder className='text-3xl text-primary hover:text-primary/80 transition-colors duration-200' />
                         </button>
                     </div>
@@ -110,7 +128,7 @@ const ProductList = () => {
                         <p className="text-gray-600">Price: {selectedProduct.price}</p>
                         {selectedProduct.quantity===0?(<span className='text-red-500'>Out of stock</span>):("")}
                         <div className="flex pt-1 pb-3 px-3 justify-between">
-                        <button className='bg-primary/80 hover:bg-primary hover:scale-105 transition transform duration-200 text-white py-2 px-4 rounded-full flex items-center gap-2' onClick={()=>addToCart(product)}>
+                        <button className='bg-primary/80 hover:bg-primary hover:scale-105 transition transform duration-200 text-white py-2 px-4 rounded-full flex items-center gap-2' onClick={()=>addToCart(selectedProduct)} disabled={selectedProduct.quantity === 0} >
                             <span className="transition-transform duration-200">Cart</span>
                         </button>
                         <button onClick={() => alert("Added to favorites")}> 

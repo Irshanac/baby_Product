@@ -20,7 +20,7 @@ const Cart = () => {
             }
         };
         fetchCartData();
-    }, []);
+    }, [cart]);
 
     const removeFromCart = async (productId) => {
         try {
@@ -72,12 +72,13 @@ const Cart = () => {
                                     className="mt-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded"
                                 >
                                     Remove
-                                </button>
+                                </button>          
                             </div>
                         ))}
+                         <button onClick={()=>placeOrder()}>place order</button>
                     </div>
                     <div className="mt-6 text-right">
-                        <h3 className="text-xl font-semibold">Total: ${totalPrice}</h3>
+                        <h3 className="text-xl font-semibold">Total: {totalPrice}</h3>
                     </div>
                 </>
             )}
