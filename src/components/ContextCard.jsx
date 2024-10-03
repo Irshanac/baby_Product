@@ -1,10 +1,10 @@
-
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
+// Create the Context
 export const CartContext = createContext();
 
-
+// Create and export the Provider component
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]); 
     const [loading, setLoading] = useState(true); 
@@ -24,8 +24,6 @@ export const CartProvider = ({ children }) => {
 
         fetchCart();
     }, []);
-
-
     const addToCart = async (product) => {
         try {
             const productResponse = await axios.get(`http://localhost:5000/product/${product.id}`);
@@ -93,10 +91,9 @@ export const CartProvider = ({ children }) => {
             alert('Failed to clear the cart. Please try again.');
         }
     };
-
-    return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, loading, error, setCart }}>
-            {children}
-        </CartContext.Provider>
-    );
+        return (
+            <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, loading, error, setCart }}>
+                {children}
+            </CartContext.Provider>
+        );
 };

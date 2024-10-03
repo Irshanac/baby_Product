@@ -2,7 +2,11 @@
 import React from "react";
 import { FaCartShopping ,FaCircleUser } from "react-icons/fa6";
 import { IoMdSearch } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import { FaCloudUploadAlt } from "react-icons/fa";
+import { MdFavoriteBorder, MdClose } from "react-icons/md";
 const Navbar = () => {
+  const navigate=useNavigate()
   return (
     <div className="shadow-md bg-white dark:bg-red-500 dark:text-white duration-200 relative z-40">
   {/* upper */}
@@ -21,22 +25,31 @@ const Navbar = () => {
         </div>
       <div className="flex justify-between items-center gap-4">
         <button
-      onClick={() => alert("Order is not available yet")}
+      onClick={()=>navigate("/cart")}
       className="bg-gradient-to-r from-primary to-secondary/50 transition-all duration-200 text-white py-1 px-2 rounded-full flex items-center gap-3 group"
     >
       <span className="group-hover:block hidden transition-all duration-200">
-        Order
+        Cart
       </span>
       <FaCartShopping className="text-xl text-white drop-shadow-sm cursor-pointer" />
     </button>
     <button
-      onClick={() => alert("/login")}
+      onClick={() => navigate("/login")}
       className="bg-gradient-to-r from-primary to-secondary/50 transition-all duration-200 text-white py-1 px-2 rounded-full flex items-center gap-3 group"
     >
       <span className="group-hover:block hidden transition-all duration-200">
         Login
       </span>
       <FaCircleUser className="text-xl text-white drop-shadow-sm cursor-pointer" />
+    </button>
+    <button
+      onClick={()=>navigate("/favourite")}
+      className="bg-gradient-to-r from-primary to-secondary/50 transition-all duration-200 text-white py-1 px-2 rounded-full flex items-center gap-3 group"
+    >
+      <span className="group-hover:block hidden transition-all duration-200">
+        Favorite
+      </span>
+      <MdFavoriteBorder className="text-xl text-white drop-shadow-sm cursor-pointer" />
     </button>
       </div>
      

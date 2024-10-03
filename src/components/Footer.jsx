@@ -1,11 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-function Footer() {
+const Footer = () => {
   return (
-    <div>
-      <h1>hi is foolter</h1>
-    </div>
-  )
-}
+    <footer className='bg-primary-100 text-white-100 items-center justify-center mx-auto'>
+      <h3 className='font-bold'>Baby'S</h3>
+      <p>&copy; 2024 eCommerce. All rights reserved.</p>
+    </footer>
+  );
+};
 
-export default Footer
+
+export default Footer;
