@@ -12,7 +12,8 @@ const Cart = () => {
         const checkStock = async () => {
             try {
                 const updatedCart = await Promise.all(cart.map(async (item) => {
-                    const response = await axios.get(`http://localhost:5000/product/${item.id}`);
+                    let id=item.id
+                    const response = await axios.get(`http://localhost:5000/product/${id}`);
                     return { ...item, available: response.data.quantity };
                 }));
                 setCart(updatedCart);
@@ -34,7 +35,7 @@ const Cart = () => {
         } else {
             setStockErrors([]);
         }
-    }, [cart, setCart]);
+    }, []);
 
     const placeOrder = () => {
         navigate("/order"); 
@@ -83,7 +84,7 @@ const Cart = () => {
                                     className="w-full h-60 rounded-t object-cover"
                                 />
                                 <p className="text-gray-600 px-3 py-1">Name: {product.name}</p>
-                                <p className="text-gray-600 px-3 py-1">Price: ${Number(product.price).toFixed(2)}</p>
+                                <p className="text-gray-600 px-3 py-1">Price: {Number(product.price).toFixed(2)}</p>
                                 <p className="text-gray-600 px-3 py-1">Quantity: {product.quantity}</p>
                                 {product.available === 0 ? (
                                     <span className='text-red-500 py-1 px-3'>Out of stock</span>
@@ -92,7 +93,7 @@ const Cart = () => {
                                 ) : null}
                                 <button
                                     onClick={() => removeFromCart(product.id)}
-                                    className="mt-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded"
+                                    className="mt-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded justify-center items-center"
                                 >
                                     Remove
                                 </button>          

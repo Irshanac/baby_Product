@@ -7,6 +7,17 @@
       "name": "irshana c",
       "email": "shanasafeeer159@gmail.com",
       "cart": [
+        {
+          "title": "Teddy",
+          "id": "1",
+          "url": "https://websitedemos.net/baby-store-04/wp-content/uploads/sites/750/2020/12/baby-store-product-img-12.jpg",
+          "description": "Extra Soft Touch Lamb Toys",
+          "price": 599,
+          "quantity": 1,
+          "category": "Toys",
+          "name": "teddy",
+          "available": 17
+        }
       ],
       "favorites": [],
       "order": []
@@ -21,7 +32,7 @@
       "price": 599,
       "quantity": 17,
       "category": "Toys",
-      "name":"teddy"
+      "name": "teddy"
     },
     {
       "title": "Teddy",
@@ -31,7 +42,7 @@
       "price": 299,
       "quantity": 1,
       "category": "Toys",
-      "name":"Toys"
+      "name": "Toys"
     },
     {
       "title": "Himalaya",
@@ -41,7 +52,7 @@
       "price": 49,
       "quantity": 70,
       "category": "Others",
-      "name":"custume product"
+      "name": "custume product"
     },
     {
       "title": "Iconic Party Wear",
@@ -51,7 +62,7 @@
       "price": 1499,
       "quantity": 40,
       "category": "Others",
-      "name":"dress"
+      "name": "dress"
     },
     {
       "title": "Build The Plans",
@@ -80,7 +91,7 @@
       "description": "BabyCare Products",
       "url": "https://www.hcpwellness.in/wp-content/uploads/2024/02/babycare.jpg",
       "price": 34,
-      "quantity": 51,
+      "quantity": 1,
       "category": "Others"
     },
     {
@@ -89,7 +100,7 @@
       "name": "cotten kuratha",
       "description": "baby dess ",
       "price": 400,
-      "quantity": 10,
+      "quantity": 0,
       "url": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRjlMF4qLc4U2fFJSfqwEi4fbKXbi2DtnxhkY07utxQs55YPeycFKkTkZzF9kNsz7OIZlEYBum81_aE7Z-tdMIAw1QTtxYRB5gqJS3s6qKHGcSqjNt2PpSmHA",
       "category": "Dress"
     },
@@ -99,7 +110,7 @@
       "name": "kurtha",
       "description": "baby dess ",
       "price": 400,
-      "quantity": 11,
+      "quantity": 10,
       "url": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTYmWQ0PGxyu6GmDocTpyqpYnZAHpIcV0NsAnIQ162Z-LyLkiOzb1-wYTjvdFkj_uphOVd1QUeQ3k1Rm56iuWV8P-r_yec26GkKWtA21BVdbexelDYISCZ2",
       "category": "Dress"
     },
@@ -109,7 +120,7 @@
       "name": "kurtha",
       "description": "baby dess ",
       "price": 300,
-      "quantity": 10,
+      "quantity": 0,
       "url": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQu4VySWDAPIAvr2ikqLbfUG-Sld4Yl_KaSd0IxBXamGMpAsKBbyqAxCtTRwzPsWVutMKzdC3Ho2y3ghnzwutnadS2DN0DUMfzerwFEAWK-R55fHYq5a_7D1A",
       "category": "Dress"
     }
