@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from './ContextCard'; 
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import { Toaster } from 'react-hot-toast';
 const Cart = () => {
     const { cart, removeFromCart, loading, error, setCart } = useContext(CartContext);
     const [stockErrors, setStockErrors] = useState([]);
@@ -54,6 +54,7 @@ const Cart = () => {
     return (
         <div className="container mx-auto p-4">
             <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
+            <Toaster/>
             {cart.length === 0 ? (
                 <h1 className="text-center">Your cart is empty</h1>
             ) : (

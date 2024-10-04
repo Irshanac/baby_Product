@@ -9,7 +9,6 @@ export const CartProvider = ({ children }) => {
 
     useEffect(() => {
         const id = localStorage.getItem("id");
-        
         const fetchCart = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/users/${id}`);

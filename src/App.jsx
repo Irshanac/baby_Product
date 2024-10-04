@@ -10,6 +10,7 @@ import Favourite from './components/Favorite';
 import AddToCart from './components/Cart';
 import Order from './components/Order';
 import OrderConform from './components/OrederConform'
+import OrderHistory from './components/OrderHistory';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/cart" element={<AddToCart />} />
           <Route path="/order" element={<Order />} />
           <Route path="/order-confirmation" element={<OrderConform/>}/>
+          <Route path="/order-History" element={<OrderHistory/>}/>
         </Route>
 
         {/* Layout for Login (no Navbar or Footer) */}

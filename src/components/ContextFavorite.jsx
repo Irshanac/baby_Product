@@ -1,27 +1,18 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
-
-// Create the Context
+import toast from "react-hot-toast";
 export const FavoriteContext = createContext();
-
-// Create and export the Provider component
 export const FavoriteProvider = ({ children }) => {
     const [favorites, setFavorites] = useState([]);
     const [loadingFavorites, setLoadingFavorites] = useState(true);
     const [errorFavorites, setErrorFavorites] = useState(null);
 
     useEffect(() => {
-        const userId = localStorage.getItem("id"); // Get user ID from localStorage
-
-        if (!userId) {
-            setLoadingFavorites(false);
-            return; // Stop if user ID is not present
-        }
-
+        const userId = localStorage.getItem("id"); 
         const fetchFavorites = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/users/${userId}`);
-                setFavorites(response.data.favorite); // Set favorites from user data
+                setFavorites(response.data.favorites);
             } catch (err) {
                 setErrorFavorites(err.message || 'Failed to fetch favorite items.');
             } finally {
@@ -33,43 +24,51 @@ export const FavoriteProvider = ({ children }) => {
     }, []);
 
     const addToFavorite = async (product) => {
-        const userId = localStorage.getItem("id"); // Get user ID from localStorage
-        if (!userId) {
-            alert('User is not logged in.');
-            return;
+        const userId = localStorage.getItem("id");
+        //checking allready exisit
+        console.log(product.id);
+        
+        const existingFavorite=favorites.find((item)=>item.id===product.id)
+        if(existingFavorite)
+        {
+            toast.error("allready exist")
+            return
         }
-
         try {
-            // Add the product to the user's favorites on the backend
-            const response = await axios.post(`http://localhost:5000/users/${userId}/favorite`, product);
-            setFavorites([...favorites, response.data]); // Update local state
-            alert(`${product.name} added to favorites.`);
+            await axios.patch(`http://localhost:5000/users/${userId}`,{favorites:[...favorites,product]});
+            setFavorites([...favorites, product]); 
+            toast.success(`${product.name} added to favorites.`);
         } catch (err) {
-            console.error('Error adding to favorites:', err);
-            alert('Failed to add product to favorites. Please try again.');
+            toast.error('Failed to add product to favorites. Please try again.');
         }
     };
 
     const removeFromFavorite = async (productId) => {
-        const userId = localStorage.getItem("id"); // Get user ID from localStorage
-        if (!userId) {
-            alert('User is not logged in.');
-            return;
-        }
-
+        const userId = localStorage.getItem("id");
         try {
-            // Remove the product from the user's favorites on the backend
-            await axios.delete(`http://localhost:5000/users/${userId}/favorite/${productId}`);
-            setFavorites(favorites.filter(item => item.id !== productId)); // Update local state
-            alert('Product removed from favorites.');
+            const updateFavorite=favorites.filter((item)=>item.id!==productId)
+            await axios.patch(`http://localhost:5000/users/${userId}`,{favorites:[...updateFavorite]});
+            setFavorites(updateFavorite); 
+            toast.success('Product removed from favorites.');
         } catch (err) {
-            console.error('Error removing from favorites:', err);
-            alert('Failed to remove product from favorites. Please try again.');
+            toast.error('Failed to remove product from favorites. Please try again.');
         }
     };
+    const clearFavorites=async ()=>{
+        try{
+            const userid=localStorage.getItem("id")
+        await axios.patch(`http://localhost:5000/users/${userid}`,{favorites:[]})
+        setFavorites([])
+        toast.success("remove all item from the favorite")
+        }
+        catch(error)
+        {
+            toast.error("Fails to remove all items from favorite.")
+        }
+    }
 
     return (
-        <FavoriteContext.Provider value={{ favorites, addToFavorite, removeFromFavorite, loadingFavorites, errorFavorites }}>
+        <FavoriteContext.Provider value={{ favorites, addToFavorite, removeFromFavorite,clearFavorites, loadingFavorites, errorFavorites }}>
             {children}
         </FavoriteContext.Provider>
     );

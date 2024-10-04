@@ -5,14 +5,12 @@ import { CartContext } from './ContextCard';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-
+import toast from 'react-hot-toast'
 const Order = () => {
     const { cart, clearCart } = useContext(CartContext);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const navigate = useNavigate(); // Hook for navigation
-
-    // Define validation schema with Yup
+    const navigate = useNavigate(); 
     const validationSchema = Yup.object({
         name: Yup.string()
             .required('Name is required')
@@ -28,7 +26,6 @@ const Order = () => {
             .required('Payment method is required'),
     });
 
-    // Initial form values
     const initialValues = {
         name: "",
         email: "",
@@ -36,7 +33,6 @@ const Order = () => {
         paymentMethod: "Credit Card",
     };
 
-    // Handle form submission
     const handleSubmit = async (values, { setSubmitting }) => {
         if (cart.length === 0) {
             alert("Your cart is empty!");
@@ -47,12 +43,10 @@ const Order = () => {
         setLoading(true);
         setError(null);
 
-        // Calculate total price
         const totalPrice = cart.reduce((acc, item) => acc + Number(item.price) * item.quantity, 0);
 
-        // Prepare order data
         const orderData = {
-            id: Date.now(), // Unique ID based on timestamp
+            id: Date.now(), 
             items: cart,
             total: totalPrice,
             ...values,
@@ -60,9 +54,8 @@ const Order = () => {
         };
 
         try {
-            // Step 1: Verify and Update Product Quantities
+            const userid=localStorage.getItem("id")
             for (let item of cart) {
-                // Fetch the latest product data
                 const productResponse = await axios.get(`http://localhost:5000/product/${item.id}`);
                 const product = productResponse.data;
 
@@ -74,22 +67,20 @@ const Order = () => {
                     throw new Error(`Insufficient quantity for "${product.name}". Available: ${product.quantity}, Requested: ${item.quantity}`);
                 }
 
-                // Reduce the product quantity
                 const updatedProduct = { ...product, quantity: product.quantity - item.quantity };
                 await axios.put(`http://localhost:5000/product/${product.id}`, updatedProduct);
             }
+            const response=await axios.get(`http://localhost:5000/users/${userid}`)
+            const oldOrder=response.data.order
+            await axios.patch(`http://localhost:5000/users/${userid}`, {order:[...oldOrder,orderData]});
 
-            // Step 2: Submit the order
-            await axios.post("http://localhost:5000/orders", orderData);
-
-            // Step 3: Clear the cart
+        
             await clearCart();
 
             setLoading(false);
             setSubmitting(false);
-            alert("Order placed successfully!");
+            toast.success("Order placed successfully!");
 
-            // Navigate to order confirmation page
             navigate("/order-confirmation", { state: { orderId: orderData.id } });
         } catch (err) {
             console.error("Error placing order:", err);

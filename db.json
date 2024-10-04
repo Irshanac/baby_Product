@@ -6,19 +6,7 @@
       "password": "Irshu@123",
       "name": "irshana c",
       "email": "shanasafeeer159@gmail.com",
-      "cart": [
-        {
-          "title": "Teddy",
-          "id": "1",
-          "url": "https://websitedemos.net/baby-store-04/wp-content/uploads/sites/750/2020/12/baby-store-product-img-12.jpg",
-          "description": "Extra Soft Touch Lamb Toys",
-          "price": 599,
-          "quantity": 1,
-          "category": "Toys",
-          "name": "teddy",
-          "available": 17
-        }
-      ],
+      "cart": [],
       "favorites": [],
       "order": []
     }
@@ -40,7 +28,7 @@
       "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMXOGcGOyqkDuQ4-g0yPU8R1EiikU8Bq6K9w&s",
       "description": "Mealtime For Baby Nutrition",
       "price": 299,
-      "quantity": 1,
+      "quantity": 0,
       "category": "Toys",
       "name": "Toys"
     },
@@ -60,7 +48,7 @@
       "url": "https://t3.ftcdn.net/jpg/02/02/09/40/240_F_202094092_oX0ghDqSHAjVRbng3c6kYqvdJ92QYw9D.jpg",
       "description": "Baby Party Wear",
       "price": 1499,
-      "quantity": 40,
+      "quantity": 37,
       "category": "Others",
       "name": "dress"
     },
@@ -71,7 +59,7 @@
       "description": "Baby Toys",
       "url": "https://t3.ftcdn.net/jpg/02/43/00/34/240_F_243003457_2xVHFdEFW4E8qCtJLwRNB65DJfWeT7oM.jpg",
       "price": 799,
-      "quantity": 61,
+      "quantity": 55,
       "category": "Others"
     },
     {

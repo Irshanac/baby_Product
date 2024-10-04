@@ -34,6 +34,15 @@ const Navbar = () => {
       <FaCartShopping className="text-xl text-white drop-shadow-sm cursor-pointer" />
     </button>
     <button
+      onClick={()=>navigate("/order-History")}
+      className="bg-gradient-to-r from-primary to-secondary/50 transition-all duration-200 text-white py-1 px-2 rounded-full flex items-center gap-3 group"
+    >
+      <span className="group-hover:block hidden transition-all duration-200">
+        Order History
+      </span>
+      <IoMdSearch className="text-xl text-white drop-shadow-sm cursor-pointer" />
+    </button>
+    <button
       onClick={() => navigate("/login")}
       className="bg-gradient-to-r from-primary to-secondary/50 transition-all duration-200 text-white py-1 px-2 rounded-full flex items-center gap-3 group"
     >
@@ -52,7 +61,10 @@ const Navbar = () => {
       <MdFavoriteBorder className="text-xl text-white drop-shadow-sm cursor-pointer" />
     </button>
     <button
-      onClick={()=>localStorage.removeItem("id")}
+      onClick={()=>{ 
+        localStorage.removeItem("id")
+      navigate("/")}
+      }
       className="bg-gradient-to-r from-primary to-secondary/50 transition-all duration-200 text-white py-1 px-2 rounded-full flex items-center gap-3 group"
     >
       <span className="group-hover:block hidden transition-all duration-200">
