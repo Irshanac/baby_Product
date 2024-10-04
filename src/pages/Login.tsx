@@ -4,13 +4,11 @@ import * as yup from 'yup';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from 'react-hot-toast';
-// Removed react-toastify CSS import
 
 const Login = () => {
     const [isLogin, setIsLogin] = useState(true);
     const navigate = useNavigate(); // Hook from React Router
  
-    // Initial values and validation for the login form
     const loginInitialValues = { username: "", password: "" };
     const loginValidationSchema = yup.object({
         username: yup.string().required("Please provide a username"),
@@ -23,11 +21,20 @@ const Login = () => {
             .matches(/[@$!%*?&#_]/, "Password should contain at least one special character")
     });
 
-    // Initial values and validation for the registration form
-    const registrationInitialValues = { name: "", username: "", email: "", password: "", confirmPassword: "" };
+   
+    const registrationInitialValues = { 
+        name: "", 
+        username: "", 
+        email: "", 
+        password: "", 
+        confirmPassword: "", 
+        cart: [], 
+        favorites: [], // Corrected spelling
+        order: []
+    };
     const registrationValidationSchema = yup.object({
         name: yup.string().required("Please provide a name"),
-        username: yup.string().required("Please provide a username").min(2,"minimun 2 latters requires"),
+        username: yup.string().required("Please provide a username").min(2,"Minimum 2 letters required"),
         email: yup.string().email("Please provide a valid email").required("Email is required"),
         password: yup.string()
             .required("Please provide a password")
@@ -42,10 +49,9 @@ const Login = () => {
         
     });
 
-    // Login submit handler
     const loginSubmit = async (values, { resetForm }) => {
         try {
-            // Make a GET request to fetch users matching the username and password
+           
             const response = await axios.get('http://localhost:5000/users', {
                 params: {
                     username: values.username,
@@ -53,12 +59,13 @@ const Login = () => {
                 }
             });
 
-            console.log("Login response data:", response.data); // Log the response data for debugging
+            console.log("Login response data:", response.data); 
 
-            if (response.data.length > 0) { // Check if any user matches
+            if (response.data.length > 0) {
                 toast.success("Login successful!");
-                resetForm(); // Reset the form fields
-                navigate("/"); // Redirect to home or dashboard
+                resetForm(); 
+                localStorage.setItem("id", response.data[0].id) // Corrected
+                navigate("/"); 
             }
             else {
                 toast.error("Invalid username or password");
@@ -70,10 +77,12 @@ const Login = () => {
         }
     };
 
-    // Registration submit handler
     const registrationSubmit = async (values, { resetForm }) => {
         try {
-            // Check if the username already exists
+            const cart=[],favorites=[],order=[]
+            console.log('====================================');
+            console.log(values);
+            console.log('====================================');
             const existingUsername = await axios.get("http://localhost:5000/users", {
                 params: { username: values.username }
             });
@@ -81,8 +90,7 @@ const Login = () => {
                 toast.error("Username already exists. Please choose another one.");
                 return;
             }
-
-            // Check if the email already exists
+            
             const existingEmail = await axios.get("http://localhost:5000/users", {
                 params: { email: values.email }
             });
@@ -90,16 +98,18 @@ const Login = () => {
                 toast.error("Email already exists. You can login.");
                 return;
             }
-
-            // Exclude confirmPassword from the data to be sent to the server
+            console.log("value...",values)
             const { confirmPassword, ...userData } = values;
 
-            // Post the new user data to JSON Server
-            const response = await axios.post("http://localhost:5000/users", userData);
+            console.log("User Data to be registered:", userData); 
+             const {... addingData}={...userData,cart,favorites,order}
+             console.log("adding data",addingData)
+            const response = await axios.post("http://localhost:5000/users", addingData);
             console.log("Registration success", response.data);
             toast.success("Registration successful");
-            resetForm(); // Reset the form fields after successful registration
-            navigate("/login");
+            resetForm(); 
+            
+            setIsLogin(true)
         }
         catch (error) {
             console.log("Registration failed", error);
@@ -110,7 +120,7 @@ const Login = () => {
     return (
         <div className="d-flex justify-content-center align-items-center vh-100">
             <div className="col-md-4 p-4 border rounded shadow">
-                {/* Toggle Buttons */}
+              
                 <div className="d-flex mb-4 gap-2">
                     <button 
                         type="button" 
@@ -128,7 +138,7 @@ const Login = () => {
                     </button>
                 </div>
                 <Toaster/>
-                {/* Conditional Rendering of Forms */}
+               
                 {isLogin ? (
                     <Formik
                         initialValues={loginInitialValues}
@@ -167,7 +177,7 @@ const Login = () => {
                                 >
                                     {isSubmitting ? 'Logging in...' : 'Login'}
                                 </button>
-                                {/* Removed Toaster from here */}
+                               
                             </Form>
                         )}
                     </Formik>
@@ -241,7 +251,7 @@ const Login = () => {
                                 >
                                     {isSubmitting ? 'Registering...' : 'Register'}
                                 </button>
-                                {/* Removed Toaster from here */}
+                              
                             </Form>
                         )}
                     </Formik>

@@ -51,6 +51,15 @@ const Navbar = () => {
       </span>
       <MdFavoriteBorder className="text-xl text-white drop-shadow-sm cursor-pointer" />
     </button>
+    <button
+      onClick={()=>localStorage.removeItem("id")}
+      className="bg-gradient-to-r from-primary to-secondary/50 transition-all duration-200 text-white py-1 px-2 rounded-full flex items-center gap-3 group"
+    >
+      <span className="group-hover:block hidden transition-all duration-200">
+        Log out
+      </span>
+      <MdFavoriteBorder className="text-xl text-white drop-shadow-sm cursor-pointer" />
+    </button>
       </div>
      
     </div>

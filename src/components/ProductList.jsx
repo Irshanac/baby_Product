@@ -4,7 +4,8 @@ import React, { useEffect, useState, useContext } from 'react';
 import { MdFavoriteBorder, MdClose } from "react-icons/md"; 
 import { CartContext } from './ContextCard.jsx'; 
 import { FavoriteContext } from './ContextFavorite.jsx'; 
-
+import { Toaster } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 const ProductList = () => {
     const [products, setProducts] = useState([]);
     const [loadingProducts, setLoadingProducts] = useState(true);
@@ -12,6 +13,8 @@ const ProductList = () => {
     const [selectedProduct, setSelectedProduct] = useState(null); 
     const { addToCart } = useContext(CartContext);
     const { addToFavorite } = useContext(FavoriteContext); 
+
+    const navigate=useNavigate()
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -46,6 +49,7 @@ const ProductList = () => {
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center bg-gray-100 p-4">
+            <Toaster/>
             {products.map((product) => (
                 <div 
                     key={product.id} 
@@ -66,12 +70,12 @@ const ProductList = () => {
                     <div className="flex pt-1 pb-3 px-3 justify-between">
                         <button 
                             className={`bg-primary/80 hover:bg-primary hover:scale-105 transition transform duration-200 text-white py-2 px-4 rounded-full flex items-center gap-2 ${product.quantity === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-                            onClick={() => addToCart(product)} 
+                            onClick={() =>  localStorage.getItem("id") ? addToCart(product)  : navigate("/login")} 
                             disabled={product.quantity === 0} 
                         >
                             <span className="transition-transform duration-200">Cart</span>
                         </button>
-                        <button onClick={() => addToFavorite(product)}> 
+                        <button onClick={() =>localStorage.getItem("id") ? addToFavorite(product)  : navigate("/login")}> 
                             <MdFavoriteBorder className='text-3xl text-primary hover:text-primary/80 transition-colors duration-200' />
                         </button>
                     </div>
@@ -100,12 +104,14 @@ const ProductList = () => {
                         <div className="flex pt-1 pb-3 px-3 justify-between mt-4">
                             <button 
                                 className={`bg-primary/80 hover:bg-primary hover:scale-105 transition transform duration-200 text-white py-2 px-4 rounded-full flex items-center gap-2 ${selectedProduct.quantity === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-                                onClick={() => addToCart(selectedProduct)} 
+                                onClick={() =>  localStorage.getItem("id") 
+                                    ? addToCart(selectedProduct) 
+                                    : navigate("/login")} 
                                 disabled={selectedProduct.quantity === 0}
                             >
                                 <span className="transition-transform duration-200">Cart</span>
                             </button>
-                            <button onClick={() => addToFavorite(selectedProduct)}> 
+                            <button onClick={() =>localStorage.getItem("id") ? addToFavorite(selectedProduct)  : navigate("/login")}> 
                                 <MdFavoriteBorder className='text-3xl text-primary hover:text-primary/80 transition-colors duration-200' />
                             </button>
                         </div>
