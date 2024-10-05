@@ -28,9 +28,9 @@ const Login = () => {
         email: "", 
         password: "", 
         confirmPassword: "", 
-        cart: [], 
-        favorites: [], // Corrected spelling
-        order: []
+        // cart: [], 
+        // favorites: [], // Corrected spelling
+        // order: []
     };
     const registrationValidationSchema = yup.object({
         name: yup.string().required("Please provide a name"),
