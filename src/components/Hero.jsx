@@ -7,27 +7,27 @@ const ImageList = [
   {
     id: 1,
     img: "https://cdn.cdnparenting.com/articles/2017/10/418461847-H.webp",
-    title: "Upto 50% off on all Men's Wear",
-    description:
-      "lorem His Life will forever be Changed dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    title: "Buy the product easily",
+    // description:
+    //   "lorem His Life will forever be Changed dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 2,
     img: "https://t4.ftcdn.net/jpg/02/64/65/99/360_F_264659979_rg2vbYP9ZJu2TmM8QOEuZk3B5EgNraaZ.jpg",
-    title: "30% off on all Women's Wear",
-    description:
-      "Who's there lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    title: "All baby products available",
+    // description:
+    //   "Who's there lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 3,
     img: "https://media.istockphoto.com/id/1460330514/photo/young-couple-in-baby-shop.jpg?s=612x612&w=0&k=20&c=t8esEWogBBKWh5FCh9FuItGba_NaW8b49LZEjIyF2O8=",
-    title: "70% off on all Products Sale",
-    description:
-      "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  },
+    title: "No waste your time",
+  //   description:
+  //     "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+   },
 ];
 
-const Hero = ({ handleOrderPopup }) => {
+const Hero = () => {
   var settings = {
     dots: false,
     arrows: false,
@@ -42,9 +42,9 @@ const Hero = ({ handleOrderPopup }) => {
   };
 
   return (
-    <div className="relative overflow-hidden min-h-[550px] sm:min-h-[650px] bg-gray-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200 ">
+    <div className="relative overflow-hidden min-h-[350px] sm:min-h-[450px] bg-gray-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200 ">
       {/* background pattern */}
-      <div className="h-[700px] w-[700px] bg-primary/40 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z[8]"></div>
+      <div className="h-[550px] w-[700px] bg-primary/40 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z[8]"></div>
       {/* hero section */}
       <div className="container pb-8 sm:pb-0">
         <Slider {...settings}>
@@ -74,12 +74,6 @@ const Hero = ({ handleOrderPopup }) => {
                     data-aos-duration="500"
                     data-aos-delay="300"
                   >
-                    <button
-                      onClick={handleOrderPopup}
-                      className="bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 text-white py-2 px-4 rounded-full"
-                    >
-                      Order Now
-                    </button>
                   </div>
                 </div>
                 {/* image section */}

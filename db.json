@@ -9,6 +9,16 @@
       "cart": [],
       "favorites": [],
       "order": []
+    },
+    {
+      "id": "d8bd",
+      "username": "Midhunofficial__7994",
+      "password": "7994099023mM@",
+      "name": "Midhun",
+      "email": "midhunofficial7994@gmail.com",
+      "cart": [],
+      "favorites": [],
+      "order": []
     }
   ],
   "product": [
@@ -18,7 +28,7 @@
       "url": "https://websitedemos.net/baby-store-04/wp-content/uploads/sites/750/2020/12/baby-store-product-img-12.jpg",
       "description": "Extra Soft Touch Lamb Toys",
       "price": 599,
-      "quantity": 17,
+      "quantity": 16,
       "category": "Toys",
       "name": "teddy"
     },

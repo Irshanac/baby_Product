@@ -49,7 +49,7 @@ const Navbar = () => {
     if (!localStorage.getItem("id")) {
       toast.error("You must be logged in");
     } else {
-      navigate('/favorite');
+      navigate('/favourite');
     }
   };
 
@@ -83,11 +83,16 @@ const Navbar = () => {
   };
 
   const handleSearch = (e) => {
-    e.preventDefault();
-    // Implement your search logic here
-    const query = e.target.search.value;
-    navigate(`/search?query=${query}`);
+    const query = e.target.value;
+    // Debounce the query to avoid multiple API calls
+    clearTimeout(window.searchTimeout);
+    window.searchTimeout = setTimeout(() => {
+      if (query.trim()){
+      navigate(`/search?query=${encodeURIComponent(query.trim())}`);
+      }
+    }, );  
   };
+  
 
   return (
     <nav className="bg-gray-800 p-4">
@@ -98,15 +103,16 @@ const Navbar = () => {
         </div>
 
         {/* Center Section - Search */}
-        <form onSubmit={handleSearch} className="relative group">
+        <div>
           <input
             type="text"
             name="search"
             placeholder="Search"
+            onChange={handleSearch}
             className="w-48 sm:w-48 group-hover:w-72 transition-all duration-300 rounded-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-primary"
           />
-          <IoMdSearch className="text-xl text-gray-500 group-hover:text-primary absolute top-1/2 transform -translate-y-1/2 right-4 pointer-events-none" />
-        </form>
+          {/* <IoMdSearch className="text-xl text-gray-500 group-hover:text-primary absolute top-1/2 transform -translate-y-1/2 right-4 pointer-events-none" /> */}
+          </div>
 
         {/* Right Section */}
         <div className="flex items-center space-x-4">

@@ -11,7 +11,7 @@ import AddToCart from './components/Cart';
 import Order from './components/Order';
 import OrderConform from './components/OrederConform'
 import OrderHistory from './components/OrderHistory';
-
+import SearchResults from './components/SearchItem'
 const App = () => {
   return (
     <Router>
@@ -24,6 +24,7 @@ const App = () => {
           <Route path="/order" element={<Order />} />
           <Route path="/order-confirmation" element={<OrderConform/>}/>
           <Route path="/order-History" element={<OrderHistory/>}/>
+          <Route path='/search' element={<SearchResults/>}/>
         </Route>
 
         {/* Layout for Login (no Navbar or Footer) */}
