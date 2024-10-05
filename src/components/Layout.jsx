@@ -1,17 +1,17 @@
 // src/components/Layout.jsx
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Navbar from './Navbar';
+// import Navbar from './Navbar';
 import Footer from './Footer';
-
+import Navbar from './Navbarnew';
 const Layout = () => {
   return (
     <div style={styles.layout}>
-      <Navbar />  {/* Include Navbar by default */}
+      <Navbar />  
       <div style={styles.content}>
-        <Outlet />  {/* This is where the current page content will be injected */}
+        <Outlet />  
       </div>
-      <Footer />  {/* Include Footer by default */}
+      <Footer />  
     </div>
   );
 };
