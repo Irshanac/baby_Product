@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useContext} from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
-
+import { CartContext } from './ContextCard.jsx'; 
+import { FavoriteContext } from './ContextFavorite.jsx';
+import { Toaster } from 'react-hot-toast';
+import { MdFavoriteBorder } from "react-icons/md"; 
+import { useNavigate } from 'react-router-dom';
 const SearchResults = () => {
+  const navigate=useNavigate()
   const [products, setProducts] = useState([]);
   const location = useLocation();
-
+  const { addToCart } = useContext(CartContext);
+  const { addToFavorite } = useContext(FavoriteContext); 
   // Extract query parameter
   const query = new URLSearchParams(location.search).get('query') || '';
 
@@ -55,30 +61,39 @@ const SearchResults = () => {
         <p>No products found.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="border rounded-lg p-4 shadow hover:shadow-lg transition"
-            >
-              <img
-                src={product.url || '/path/to/fallback-image.jpg'}
-                alt={product.title}
-                className="w-full h-48 object-cover mb-4"
-                loading="lazy"
-                onError={(e) => { e.target.src = '/path/to/fallback-image.jpg'; }}
-              />
-              <h2 className="text-xl font-semibold">{product.title}</h2>
-              <p className="text-gray-600 mt-2">{product.description}</p>
-              <div className="mt-4 text-lg font-bold">₹{product.price}</div>
-              <button
-                onClick={() => addToCart(product)}
-                className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-              >
-                Add to Cart
-              </button>
-            </div>
-          ))}
-        </div>
+         <Toaster/>
+            {products.map((product) => (
+                <div 
+                    key={product.id} 
+                    className="border border-primary rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
+                >
+                    <div onClick={() => openModal(product)} className="cursor-pointer">
+                        <img
+                            src={product.url}
+                            alt={product.name}
+                            className="w-full h-60 rounded-t object-cover"
+                        />
+                        <p className="text-gray-600 px-3 py-1">Name: {product.name}</p>
+                        <p className="text-gray-600 px-3 py-1">Price: {Number(product.price).toFixed(2)}</p>
+                        {product.quantity === 0 ? (
+                            <span className='text-red-500 py-1 px-3'>Out of stock</span>
+                        ) : ""}
+                    </div>
+                    <div className="flex pt-1 pb-3 px-3 justify-between">
+                        <button 
+                            className={`bg-primary/80 hover:bg-primary hover:scale-105 transition transform duration-200 text-white py-2 px-4 rounded-full flex items-center gap-2 ${product.quantity === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            onClick={() =>  localStorage.getItem("id") ? addToCart(product)  : navigate("/login")} 
+                            disabled={product.quantity === 0} 
+                        >
+                            <span className="transition-transform duration-200">Cart</span>
+                        </button>
+                        <button onClick={() =>localStorage.getItem("id") ? addToFavorite(product)  : navigate("/login")}> 
+                            <MdFavoriteBorder className='text-3xl text-primary hover:text-primary/80 transition-colors duration-200' />
+                        </button>
+                    </div>
+                </div>
+            ))}
+    </div>
       )}
     </div>
   );

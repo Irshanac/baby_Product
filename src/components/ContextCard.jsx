@@ -10,6 +10,11 @@ export const CartProvider = ({ children }) => {
     useEffect(() => {
         const id = localStorage.getItem("id");
         const fetchCart = async () => {
+            if (!id) {
+                setError('User ID is null. Please log in.');
+                setLoading(false);
+                return;
+            }
             try {
                 const response = await axios.get(`http://localhost:5000/users/${id}`);
                 setCart(response.data.cart);

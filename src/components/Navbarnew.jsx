@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef,useContext } from 'react';
 import toast from 'react-hot-toast';
 import { 
   FaShoppingCart, 
@@ -10,6 +10,7 @@ import { FiSettings } from 'react-icons/fi';
 import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import { CiLogin ,CiLogout} from "react-icons/ci";
+import { CartContext } from './ContextCard';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const Navbar = () => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef(null);
   const mobileMenuRef = useRef(null);
-
+  const { cart } = useContext(CartContext);
   const toggleMenu = () => setMenuOpen(prev => !prev);
   const toggleUserMenu = () => setUserMenuOpen(prev => !prev);
 
@@ -90,7 +91,7 @@ const Navbar = () => {
       if (query.trim()){
       navigate(`/search?query=${encodeURIComponent(query.trim())}`);
       }
-    }, );  
+    });  // 300ms delay
   };
   
 
@@ -118,12 +119,18 @@ const Navbar = () => {
         <div className="flex items-center space-x-4">
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-4">
-            <button
+          <button
               onClick={handleCart}
-              className="bg-gradient-to-r from-primary to-secondary/50 transition-all duration-200 text-white py-2 px-4 rounded-full flex items-center gap-2 hover:from-secondary hover:to-primary"
+              className="relative bg-gradient-to-r from-primary to-secondary/50 transition-all duration-200 text-white py-2 px-4 rounded-full flex items-center gap-2 hover:from-secondary hover:to-primary"
               aria-label="Cart"
             >
-              <FaShoppingCart className="text-xl" />
+              <FaShoppingCart className="text-xl relative" />
+
+              {/* Badge for cart count */}
+            {cart.length>0? ( <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                {cart.length} {/* Replace with your cart count variable */}
+              </span>):("")}
+
               <span className="hidden group-hover:inline">Cart</span>
             </button>
             <button

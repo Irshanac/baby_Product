@@ -1,7 +1,7 @@
 // Favorites.js
 import React, { useContext } from 'react';
 import { FavoriteContext } from './ContextFavorite';
-
+import { CartContext } from './ContextCard.jsx'; 
 const Favorites = () => {
     const { favorites, removeFromFavorite, loading, error, clearFavorites } = useContext(FavoriteContext);
 
@@ -14,7 +14,7 @@ const Favorites = () => {
     }
 
     const totalFavorites = favorites.length;
-
+    const { addToCart } = useContext(CartContext);
     return (
         <div className="container mx-auto p-4">
             <h2 className="text-2xl font-bold mb-4">Your Favorites</h2>
@@ -35,14 +35,20 @@ const Favorites = () => {
                                 />
                                 <p className="text-gray-600 px-3">Name: {product.name}</p>
                                 <p className="text-gray-600 px-3">Price: {Number(product.price).toFixed(2)}</p>
-                                <p className="text-gray-600 px-3">Quantity: {product.quantity}</p>
-                                <div className="flex justify-center items-center py-2">
+                                <div className="flex gap-5 mx-3 py-2">
                                   <button
                                     onClick={() => removeFromFavorite(product.id)}
                                     className="mt-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded flex items-center justify-center"
                                   >
                                     Remove
                                   </button>
+                                    <button 
+                                    className={`bg-primary/80 hover:bg-primary hover:scale-105 transition transform duration-200 text-white py-2 px-4 rounded-full flex items-center gap-2 ${product.quantity === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                    onClick={() =>  localStorage.getItem("id") ? addToCart(product)  : navigate("/login")} 
+                                    disabled={product.quantity === 0} 
+                                >
+                                    <span className="transition-transform duration-200">Cart</span>
+                                </button>
                                 </div>
                             </div>
                         ))}

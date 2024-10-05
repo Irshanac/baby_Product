@@ -10,6 +10,11 @@ export const FavoriteProvider = ({ children }) => {
     useEffect(() => {
         const userId = localStorage.getItem("id"); 
         const fetchFavorites = async () => {
+            if (!userId) {
+                setErrorFavorites('User ID is null. Please log in.');
+                setLoadingFavorites(false);
+                return;
+            }
             try {
                 const response = await axios.get(`http://localhost:5000/users/${userId}`);
                 setFavorites(response.data.favorites);

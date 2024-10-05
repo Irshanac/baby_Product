@@ -6,8 +6,40 @@
       "password": "Irshu@123",
       "name": "irshana c",
       "email": "shanasafeeer159@gmail.com",
-      "cart": [],
-      "favorites": [],
+      "cart": [
+        {
+          "title": "Teddy",
+          "id": "1",
+          "url": "https://websitedemos.net/baby-store-04/wp-content/uploads/sites/750/2020/12/baby-store-product-img-12.jpg",
+          "description": "Extra Soft Touch Lamb Toys",
+          "price": 599,
+          "quantity": 1,
+          "category": "Toys",
+          "name": "teddy"
+        }
+      ],
+      "favorites": [
+        {
+          "title": "Teddy",
+          "id": "1",
+          "url": "https://websitedemos.net/baby-store-04/wp-content/uploads/sites/750/2020/12/baby-store-product-img-12.jpg",
+          "description": "Extra Soft Touch Lamb Toys",
+          "price": 599,
+          "quantity": 16,
+          "category": "Toys",
+          "name": "teddy"
+        },
+        {
+          "title": "Bbat",
+          "id": "14",
+          "name": "Baby Care",
+          "description": "BabyCare Products",
+          "url": "https://www.hcpwellness.in/wp-content/uploads/2024/02/babycare.jpg",
+          "price": 34,
+          "quantity": 1,
+          "category": "Others"
+        }
+      ],
       "order": []
     },
     {
