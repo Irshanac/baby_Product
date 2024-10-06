@@ -1,7 +1,7 @@
 // Order.js
 import axios from "axios";
 import React, { useContext, useState } from "react";
-import { CartContext } from './ContextCard';
+import { CartContext } from '../contexts/ContextCard';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';

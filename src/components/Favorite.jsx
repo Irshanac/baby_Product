@@ -1,7 +1,7 @@
 // Favorites.js
 import React, { useContext } from 'react';
-import { FavoriteContext } from './ContextFavorite';
-import { CartContext } from './ContextCard.jsx'; 
+import { FavoriteContext } from '../contexts/ContextFavorite';
+import { CartContext } from '../contexts/ContextCard.jsx'; 
 const Favorites = () => {
     const { favorites, removeFromFavorite, loading, error, clearFavorites } = useContext(FavoriteContext);
 
@@ -35,7 +35,7 @@ const Favorites = () => {
                                 />
                                 <p className="text-gray-600 px-3">Name: {product.name}</p>
                                 <p className="text-gray-600 px-3">Price: {Number(product.price).toFixed(2)}</p>
-                                <div className="flex gap-5 mx-3 py-2">
+                                <div className="flex gap-4 mx-3 py-2">
                                   <button
                                     onClick={() => removeFromFavorite(product.id)}
                                     className="mt-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded flex items-center justify-center"

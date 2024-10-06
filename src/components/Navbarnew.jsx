@@ -10,7 +10,7 @@ import { FiSettings } from 'react-icons/fi';
 import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import { CiLogin ,CiLogout} from "react-icons/ci";
-import { CartContext } from './ContextCard';
+import { CartContext } from '../contexts/ContextCard';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -104,18 +104,16 @@ const Navbar = () => {
         </div>
 
         {/* Center Section - Search */}
-        <div className="relative">
-          <label htmlFor="search" className="sr-only">Search</label>
+        <div>
           <input
-            id="search"
             type="text"
             name="search"
             placeholder="Search"
             onChange={handleSearch}
             className="w-48 sm:w-48 group-hover:w-72 transition-all duration-300 rounded-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-primary"
           />
-          <IoMdSearch className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl text-gray-500 pointer-events-none" />
-        </div>
+          {/* <IoMdSearch className="text-xl text-gray-500 group-hover:text-primary absolute top-1/2 transform -translate-y-1/2 right-4 pointer-events-none" /> */}
+          </div>
 
         {/* Right Section */}
         <div className="flex items-center space-x-4">

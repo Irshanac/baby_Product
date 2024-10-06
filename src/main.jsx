@@ -4,8 +4,8 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
-import { CartProvider } from './components/ContextCard.jsx'; // Import Provider
-import { FavoriteProvider } from './components/ContextFavorite.jsx'; // Import Provider
+import { CartProvider } from './contexts/ContextCard.jsx'; // Import Provider
+import { FavoriteProvider } from './contexts/ContextFavorite.jsx' // Import Provider
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 

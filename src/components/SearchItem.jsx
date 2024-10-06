@@ -2,8 +2,8 @@ import React, { useState, useEffect ,useContext} from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { CartContext } from './ContextCard.jsx'; 
-import { FavoriteContext } from './ContextFavorite.jsx';
+import { CartContext } from '../contexts/ContextCard.jsx'; 
+import { FavoriteContext } from '../contexts/ContextFavorite.jsx';
 import { Toaster } from 'react-hot-toast';
 import { MdFavoriteBorder } from "react-icons/md"; 
 import { useNavigate } from 'react-router-dom';
@@ -27,9 +27,9 @@ const SearchResults = () => {
         const response = await axios.get("http://localhost:5000/product");
         const allProducts = response.data;
         const filtered = allProducts.filter((product) =>
-          product.title.toLowerCase().includes(query.toLowerCase()) ||
+          //product.title.toLowerCase().includes(query.toLowerCase()) ||
           product.name.toLowerCase().includes(query.toLowerCase()) ||
-          product.description.toLowerCase().includes(query.toLowerCase()) ||
+          //product.description.toLowerCase().includes(query.toLowerCase()) ||
           product.category.toLowerCase().includes(query.toLowerCase())
         );
         setProducts(filtered);

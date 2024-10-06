@@ -1,6 +1,6 @@
 // Cart.js
 import React, { useContext, useEffect, useState } from "react";
-import { CartContext } from './ContextCard'; 
+import { CartContext } from '../contexts/ContextCard'; 
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Toaster } from 'react-hot-toast';
