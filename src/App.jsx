@@ -12,6 +12,8 @@ import Order from './components/Order';
 import OrderConform from './components/OrederConform'
 import OrderHistory from './components/OrderHistory';
 import SearchResults from './components/SearchItem'
+import Adminpage from "./pages/AdminPage";
+import AdminLayout from './components/admin/AdminLayout';
 const App = () => {
   return (
     <Router>
@@ -31,6 +33,10 @@ const App = () => {
         <Route element={<LoginLayout />}>
           <Route path="/login" element={<Login />} />
         </Route>
+        {/* admin page */}
+        <Route element={<AdminLayout/>}>
+          <Route path='/admin' element={<Adminpage/>}/>
+          </Route>
       </Routes>
     </Router>
   );

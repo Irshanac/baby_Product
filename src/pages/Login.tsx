@@ -9,16 +9,11 @@ const Login = () => {
     const [isLogin, setIsLogin] = useState(true);
     const navigate = useNavigate(); // Hook from React Router
  
-    const loginInitialValues = { username: "", password: "" };
+    const loginInitialValues = { emai: "", password: "" };
     const loginValidationSchema = yup.object({
-        username: yup.string().required("Please provide a username"),
+        email: yup.string().required("Please provide a username").email("please provide a valid email"),
         password: yup.string()
             .required("Please provide a password")
-            .min(8, "Password should be at least 8 characters long")
-            .matches(/[a-z]/, "Password should contain at least one lowercase letter")
-            .matches(/[A-Z]/, "Password should contain at least one uppercase letter")
-            .matches(/[0-9]/, "Password should contain at least one number")
-            .matches(/[@$!%*?&#_]/, "Password should contain at least one special character")
     });
 
    
@@ -51,10 +46,15 @@ const Login = () => {
 
     const loginSubmit = async (values, { resetForm }) => {
         try {
-           
+          if(values.email==="shanasafeer159@gmail.com" && values.password==="Admin123")
+          {
+            toast.success("Admin login successfully complited")
+            navigate("/admin")
+          }
+          else{
             const response = await axios.get('http://localhost:5000/users', {
                 params: {
-                    username: values.username,
+                    email: values.email,
                     password: values.password
                 }
             });
@@ -70,11 +70,12 @@ const Login = () => {
             else {
                 toast.error("Invalid username or password");
             }
-        }
+        }}
         catch (error) {
             console.error("Error during login", error);
             toast.error("An error occurred during login. Please try again.");
         }
+    
     };
 
     const registrationSubmit = async (values, { resetForm }) => {
@@ -148,14 +149,14 @@ const Login = () => {
                         {({ isSubmitting }) => (
                             <Form className="space-y-4">
                                 <div className="mb-3">
-                                    <label htmlFor="username" className="form-label">Username</label>
+                                    <label htmlFor="email" className="form-label">Email</label>
                                     <Field 
-                                        type="text" 
-                                        name="username" 
-                                        id="username" 
+                                        type="email" 
+                                        name="email" 
+                                        id="email" 
                                         className="form-control"
                                     />
-                                    <ErrorMessage name="username" component="div" className="text-danger" />
+                                    <ErrorMessage name="email" component="div" className="text-danger" />
                                 </div>
 
                                 <div className="mb-3">
