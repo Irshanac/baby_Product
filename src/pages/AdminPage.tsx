@@ -1,9 +1,10 @@
 import React from 'react'
+import ProductDisply from '../components/admin/ProductDisply'
 
 function AdminPage() {
   return (
     <div>
-      <h1>admin page</h1>
+     <ProductDisply/>
     </div>
   )
 }

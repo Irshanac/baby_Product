@@ -6,7 +6,7 @@ function AdminLayout() {
     <div style={styles.layout}>
       <SideNav/>
       <div style={styles.content}>
-        {Outlet}
+        <Outlet/>
       </div>
     </div>
   )
@@ -19,8 +19,8 @@ const styles = {
     },
     content: {
       flex: 1,
-      paddingBottom: '4rem', // To prevent content being hidden behind footer
-    },
+      padding: '1rem', // To prevent content being hidden behind footer
+    }
   };
 
 export default AdminLayout

@@ -46,9 +46,10 @@ const Login = () => {
 
     const loginSubmit = async (values, { resetForm }) => {
         try {
-          if(values.email==="shanasafeer159@gmail.com" && values.password==="Admin123")
+          if(values.email==="shanasafeeer159@gmail.com" && values.password==="Admin123")
           {
             toast.success("Admin login successfully complited")
+            localStorage.setItem("name","Shana")
             navigate("/admin")
           }
           else{
