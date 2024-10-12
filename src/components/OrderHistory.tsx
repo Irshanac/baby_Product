@@ -73,9 +73,9 @@ const OrderHistory = () => {
                             <p className="mt-2 font-bold">Total: ${order.total}</p>
                         </div>
                     ))}
-                     <div className="flex justify-center items-center m-4">
+                     {/* <div className="flex justify-center items-center m-4">
                         <button className="bg-primary/90 text-white p-3 rounded hover:bg-primary/60 hover:scale-105" onClick={()=>clearHistory()}>Clear History</button>
-                    </div>
+                    </div> */}
 
                 </div>
                 

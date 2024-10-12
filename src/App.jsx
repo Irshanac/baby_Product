@@ -14,6 +14,8 @@ import OrderHistory from './components/OrderHistory';
 import SearchResults from './components/SearchItem'
 import Adminpage from "./pages/AdminPage";
 import AdminLayout from './components/admin/AdminLayout';
+import Dashbored from './components/admin/Dashbored';
+import UserList from './components/admin/UserList';
 const App = () => {
   return (
     <Router>
@@ -35,7 +37,9 @@ const App = () => {
         </Route>
         {/* admin page */}
           <Route element={<AdminLayout/>}>
-             <Route path='/admin' element={<Adminpage/>}/>
+            <Route path='/admin' element={<Dashbored/>}/>
+             <Route path='/admin/product' element={<Adminpage/>}/>
+             <Route path='/admin/user' element={<UserList/>}/>
           </Route>
       </Routes>
     </Router>

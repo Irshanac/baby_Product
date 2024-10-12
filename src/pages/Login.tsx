@@ -62,7 +62,12 @@ const Login = () => {
 
             console.log("Login response data:", response.data); 
 
-            if (response.data.length > 0) {
+            if (response.data.length > 0 ) {
+                if(!response.data[0].status)
+                {
+                    toast.error("you are blocked")
+                    return
+                }
                 toast.success("Login successful!");
                 resetForm(); 
                 localStorage.setItem("id", response.data[0].id) // Corrected
@@ -81,16 +86,18 @@ const Login = () => {
 
     const registrationSubmit = async (values, { resetForm }) => {
         try {
-            const cart=[],favorites=[],order=[]
-            console.log('====================================');
-            console.log(values);
-            console.log('====================================');
+            const cart=[],favorites=[],order=[],status=true
             const existingUsername = await axios.get("http://localhost:5000/users", {
                 params: { username: values.username }
             });
             if (existingUsername.data.length > 0) {
                 toast.error("Username already exists. Please choose another one.");
                 return;
+            }
+            if(values.email==='shanasefeeer159@gmail.com')
+            {
+                toast.error("change your email please...")
+                return
             }
             
             const existingEmail = await axios.get("http://localhost:5000/users", {
@@ -104,7 +111,7 @@ const Login = () => {
             const { confirmPassword, ...userData } = values;
 
             console.log("User Data to be registered:", userData); 
-             const {... addingData}={...userData,cart,favorites,order}
+             const {... addingData}={...userData,status,cart,favorites,order}
              console.log("adding data",addingData)
             const response = await axios.post("http://localhost:5000/users", addingData);
             console.log("Registration success", response.data);
