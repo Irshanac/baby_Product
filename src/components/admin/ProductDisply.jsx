@@ -103,7 +103,7 @@ const selectEditFormData=(editData)=>{
               <td className="px-6 py-1 text-gray-700">
                 <div className="flex flex-col justify-center">
                     <button className="px-3 py-1 rounded bg-primary/70 text-white m-1 hover:scale-105 hover:bg-primary/90"onClick={()=>setEditProduct(item)}>Edit</button>
-                    <button className="px-3 py-1 rounded bg-primary/70 text-white m-1 hover:scale-105 hover:bg-red-900" onClick={()=>deleteProduct(item.id)}>Delete</button>
+                  <button className="px-3 py-1 rounded bg-primary/70 text-white m-1 hover:scale-105 hover:bg-red-900" onClick={()=>deleteProduct(item.id)}>Delete</button>
                 </div>
               </td>
             </tr>
