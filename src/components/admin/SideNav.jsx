@@ -39,6 +39,12 @@ function SideNav() {
         >
           User
         </button>
+        {/* <button
+          className={`bg-secondary m-2 py-2 px-1 rounded hover:scale-105 hover:text-white ${active === '/admin/user' ? 'text-white' : ''}`}
+          onClick={() => handleClick('/admin/rating')}
+        >
+          Rating
+        </button> */}
 
         <div className="mt-auto flex justify-center items-center cursor-pointer hover:scale-105">
           <IoIosLogOut size={24} className="text-white" onClick={()=>navigate('/login')} />

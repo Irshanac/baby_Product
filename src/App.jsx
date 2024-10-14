@@ -17,6 +17,7 @@ import Adminpage from "./pages/AdminPage";
 import AdminLayout from './components/admin/AdminLayout';
 import Dashbored from './components/admin/Dashbored';
 import UserList from './components/admin/UserList';
+import Rating from './components/admin/Rating';
 const App = () => {
   return (
     <Router>
@@ -41,6 +42,7 @@ const App = () => {
             <Route path='/admin' element={<Dashbored/>}/>
              <Route path='/admin/product' element={<Adminpage/>}/>
              <Route path='/admin/user' element={<UserList/>}/>
+             <Route path='/admin/rating' element={<Rating/>}/>
           </Route>
       </Routes>
     </Router>

@@ -77,6 +77,7 @@ const Navbar = () => {
         toast.error("You must be logged in");
       } else {
         localStorage.removeItem("id");
+        localStorage.removeItem("name")
     toast.success("Logged out successfully");
     navigate('/login');
       }
@@ -171,12 +172,12 @@ const Navbar = () => {
                     >
                       <FiSettings className="mr-2" /> Order
                     </li>
-                    <li
+                   {localStorage.getItem("id")?(<li
                       className="p-2 hover:bg-gray-100 cursor-pointer flex items-center"
                       onClick={handleLogout}
                     >
                       <CiLogout className="mr-2" /> Logout
-                    </li>
+                    </li>):("")}
                   </ul>
                 </div>
               )}
@@ -212,24 +213,24 @@ const Navbar = () => {
           >
             <FaHeart className="mr-2" /> Favorite
           </button>
-          <button
+          {localStorage.getItem("id")?("") :(<button
             onClick={handleLogin}
             className="w-full text-left text-white flex items-center p-2 hover:bg-gray-600 rounded"
           >
             <CiLogin className="mr-2" /> login
-          </button>
+          </button>)}
           <button
             onClick={handleSettings}
             className="w-full text-left text-white flex items-center p-2 hover:bg-gray-600 rounded"
           >
-            <FiSettings className="mr-2" /> Settings
+            <FiSettings className="mr-2" /> order
           </button>
-          <button
+          {localStorage.getItem("id")?(<button
             onClick={handleLogout}
             className="w-full text-left text-white flex items-center p-2 hover:bg-gray-600 rounded"
           >
             <CiLogout className="mr-2" /> Logout
-          </button>
+          </button>):("")}
         </div>
       )}
     </nav>

@@ -27,8 +27,15 @@ function UserContext({children}) {
             console.log(error.messege)
         }
     }
+    const totalOrder = user.reduce((acc, cur) => {
+        if (cur.order.length > 0) {
+            return acc.concat(cur.order);
+        }
+        return acc;
+    }, []);
+    
   return (
-    <UserDataContext.Provider value={{user,block}}>
+    <UserDataContext.Provider value={{user,block,totalOrder}}>
         {children}
     </UserDataContext.Provider>
   )

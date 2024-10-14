@@ -193,32 +193,14 @@
   ],
   "product": [
     {
-      "name": "Baby kit",
-      "price": 340,
-      "quantity": 58,
-      "description": 6,
-      "category": "Others",
-      "url": "https://www.hcpwellness.in/wp-content/uploads/2024/02/babycare.jpg",
-      "id": "14"
-    },
-    {
       "name": "cotten kuratha",
       "price": 400,
-      "quantity": 6,
-      "description": 8,
+      "quantity": 60,
+      "description": 6,
       "category": "Dress",
       "url": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRjlMF4qLc4U2fFJSfqwEi4fbKXbi2DtnxhkY07utxQs55YPeycFKkTkZzF9kNsz7OIZlEYBum81_aE7Z-tdMIAw1QTtxYRB5gqJS3s6qKHGcSqjNt2PpSmHA",
       "id": "140"
-    },
-    {
-      "title": "baby kurtha",
-      "id": "120",
-      "name": "kurtha",
-      "description": "baby dess ",
-      "price": 400,
-      "quantity": 7,
-      "url": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTYmWQ0PGxyu6GmDocTpyqpYnZAHpIcV0NsAnIQ162Z-LyLkiOzb1-wYTjvdFkj_uphOVd1QUeQ3k1Rm56iuWV8P-r_yec26GkKWtA21BVdbexelDYISCZ2",
-      "category": "Dress"
+
     },
     {
       "id": "623f",

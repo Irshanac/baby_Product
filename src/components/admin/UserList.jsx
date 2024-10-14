@@ -5,7 +5,7 @@ import { Toaster } from 'react-hot-toast';
 function UserList() {
   const { user, block } = useContext(UserDataContext);
   const [userShow, setUserShow] = useState(null);
-
+  
   return (
     <div>
       <Toaster/>
@@ -65,8 +65,8 @@ function UserList() {
                       {order.items.map((item) => (
                         <li key={item.id} className='flex justify-between'>
                           <span>{item.name}</span>
-                          <span>{item.quantity}</span>
-                          <span>{item.price}</span>
+                          <span>{item.quantity}x{item.price}</span>
+                          <span>{item.price * item.quantity}</span>
                         </li>
                       ))}
                     </ul>

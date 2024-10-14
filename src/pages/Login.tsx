@@ -48,6 +48,8 @@ const Login = () => {
             toast.success("Admin login successfully complited")
            // localStorage.setItem("name","Shana")
             navigate("/admin")
+            localStorage.setItem("id", 1);
+                localStorage.setItem("name", 'admin');
           }
           else{
             const response = await axios.get('http://localhost:5000/users', {
