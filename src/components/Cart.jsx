@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Toaster } from 'react-hot-toast';
 const Cart = () => {
-    const { cart, removeFromCart, loading, error, setCart } = useContext(CartContext);
+    const { cart, removeFromCart, loading, error, setCart,decresingQuantity,increasingQuantity } = useContext(CartContext);
     const [stockErrors, setStockErrors] = useState([]);
     const navigate = useNavigate(); 
     useEffect(() => {
@@ -86,7 +86,8 @@ const Cart = () => {
                                 />
                                 <p className="text-gray-600 px-3 py-1">Name: {product.name}</p>
                                 <p className="text-gray-600 px-3 py-1">Price: {Number(product.price).toFixed(2)}</p>
-                                <p className="text-gray-600 px-3 py-1">Quantity: {product.quantity}</p>
+                                <p className="text-gray-600 px-3 py-1"><button className="px-3 py-1 m-1 bg-gray-300 rounded hover:text-white hover:bg-primary/80" onClick={()=>decresingQuantity(product.id)}>-</button>Quantity: {product.quantity}<button className="px-3 py-1 m-1 bg-gray-300 rounded hover:text-white hover:bg-primary/80"onClick={()=>increasingQuantity(product.id)}>+</button></p>
+                                <p className="text-gray-600 px-3 py-1">Total:{product.price*product.quantity}</p>
                                 {product.available === 0 ? (
                                     <span className='text-red-500 py-1 px-3'>Out of stock</span>
                                 ) : product.available < product.quantity ? (

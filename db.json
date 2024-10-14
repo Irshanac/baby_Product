@@ -8,7 +8,57 @@
       "email": "midhunofficial7994@gmail.com",
       "cart": [],
       "favorites": [],
-      "order": [],
+      "order": [
+        {
+          "id": 1728896196884,
+          "items": [
+            {
+              "name": "Baby kit",
+              "price": 340,
+              "quantity": 2,
+              "description": 6,
+              "category": "Others",
+              "url": "https://www.hcpwellness.in/wp-content/uploads/2024/02/babycare.jpg",
+              "id": "14"
+            },
+            {
+              "name": "cotten kuratha",
+              "price": 400,
+              "quantity": 2,
+              "description": 8,
+              "category": "Dress",
+              "url": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRjlMF4qLc4U2fFJSfqwEi4fbKXbi2DtnxhkY07utxQs55YPeycFKkTkZzF9kNsz7OIZlEYBum81_aE7Z-tdMIAw1QTtxYRB5gqJS3s6qKHGcSqjNt2PpSmHA",
+              "id": "140"
+            }
+          ],
+          "total": 1480,
+          "name": "midun",
+          "email": "midun@gmail.com",
+          "address": "midun 123",
+          "paymentMethod": "Credit Card",
+          "date": "2024-10-14T08:56:36.884Z"
+        },
+        {
+          "id": 1728896304969,
+          "items": [
+            {
+              "id": "623f",
+              "name": "born kit",
+              "price": 900,
+              "quantity": 1,
+              "description": "new baby kit",
+              "category": "baby kit",
+              "url": "https://images-cdn.ubuy.co.in/634c292c296120706a53e026-zelinye-baby-care-kits-baby-grooming.jpg"
+            }
+          ],
+          "total": 900,
+          "name": "midun",
+          "email": "midhunofficial7994@gmail.com",
+          "address": "midun anjali",
+          "paymentMethod": "Credit Card",
+          "date": "2024-10-14T08:58:24.969Z"
+        }
+      ],
       "status": true
     },
     {
@@ -145,7 +195,7 @@
     {
       "name": "Baby kit",
       "price": 340,
-      "quantity": 60,
+      "quantity": 58,
       "description": 6,
       "category": "Others",
       "url": "https://www.hcpwellness.in/wp-content/uploads/2024/02/babycare.jpg",
@@ -154,7 +204,7 @@
     {
       "name": "cotten kuratha",
       "price": 400,
-      "quantity": 8,
+      "quantity": 6,
       "description": 8,
       "category": "Dress",
       "url": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRjlMF4qLc4U2fFJSfqwEi4fbKXbi2DtnxhkY07utxQs55YPeycFKkTkZzF9kNsz7OIZlEYBum81_aE7Z-tdMIAw1QTtxYRB5gqJS3s6qKHGcSqjNt2PpSmHA",
@@ -174,7 +224,7 @@
       "id": "623f",
       "name": "born kit",
       "price": 900,
-      "quantity": 14,
+      "quantity": 13,
       "description": "new baby kit",
       "category": "baby kit",
       "url": "https://images-cdn.ubuy.co.in/634c292c296120706a53e026-zelinye-baby-care-kits-baby-grooming.jpg"

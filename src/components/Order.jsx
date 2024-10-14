@@ -168,14 +168,14 @@ const Order = () => {
                             <ul className="list-disc list-inside">
                                 {cart.map(item => (
                                     <li key={item.id} className="flex justify-between">
-                                        <span>{item.name} x {item.quantity}</span>
-                                        <span>${(item.price * item.quantity).toFixed(2)}</span>
+                                        <span>{item.name}:  {item.price} x {item.quantity}</span>
+                                        <span>{(item.price * item.quantity).toFixed(2)}</span>
                                     </li>
                                 ))}
                             </ul>
                             <div className="flex justify-between mt-2 font-bold">
                                 <span>Total:</span>
-                                <span>${cart.reduce((acc, item) => acc + Number(item.price) * item.quantity, 0).toFixed(2)}</span>
+                                <span>{cart.reduce((acc, item) => acc + Number(item.price) * item.quantity, 0).toFixed(2)}</span>
                             </div>
                         </div>
 

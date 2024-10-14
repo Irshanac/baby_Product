@@ -66,11 +66,11 @@ const OrderHistory = () => {
                             <ul className="list-disc list-inside">
                                 {order.items.map(item => (
                                     <li key={item.id}>
-                                        {item.title} x {item.quantity} = ${item.price * item.quantity}
+                                        {item.name} <span>  </span> {item.price}x {item.quantity} = {item.price * item.quantity}
                                     </li>
                                 ))}
                             </ul>
-                            <p className="mt-2 font-bold">Total: ${order.total}</p>
+                            <p className="mt-2 font-bold">Total: {order.total}</p>
                         </div>
                     ))}
                      {/* <div className="flex justify-center items-center m-4">

@@ -13,6 +13,7 @@ import { CiLogin ,CiLogout} from "react-icons/ci";
 import { CartContext } from '../contexts/ContextCard';
 
 const Navbar = () => {
+  const name=localStorage.getItem("name")
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
@@ -85,7 +86,7 @@ const Navbar = () => {
 
   const handleSearch = (e) => {
     const query = e.target.value;
-    // Debounce the query to avoid multiple API calls
+    
     clearTimeout(window.searchTimeout);
     window.searchTimeout = setTimeout(() => {
       if (query.trim()){
@@ -98,12 +99,12 @@ const Navbar = () => {
   return (
     <nav className="bg-gray-800 p-4">
       <div className="container mx-auto flex justify-between items-center">
-        {/* Left Section */}
+      
         <div className="flex items-center space-x-4">
           <a className="font-bold text-2xl sm:text-3xl text-white" href="/">BABy'S</a>
         </div>
 
-        {/* Center Section - Search */}
+       
         <div>
           <input
             type="text"
@@ -126,9 +127,9 @@ const Navbar = () => {
             >
               <FaShoppingCart className="text-xl relative" />
 
-              {/* Badge for cart count */}
+              
             {cart.length>0? ( <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
-                {cart.length} {/* Replace with your cart count variable */}
+                {cart.length} 
               </span>):("")}
 
               <span className="hidden group-hover:inline">Cart</span>
@@ -152,22 +153,23 @@ const Navbar = () => {
                 aria-label="User menu"
               >
                 <FaUser className="text-xl" />
+                <span>{name}</span>
                 <span className="hidden group-hover:inline">User</span>
               </button>
               {userMenuOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded shadow-lg z-10">
                   <ul>
-                  <li
+                 {localStorage.getItem("id")?("") :(<li
                       className="p-2 hover:bg-gray-100 cursor-pointer flex items-center"
                       onClick={handleLogin}
                     >
                       <CiLogin className="mr-2" /> Login
-                    </li>
+                    </li>)}
                     <li
                       className="p-2 hover:bg-gray-100 cursor-pointer flex items-center"
                       onClick={handleSettings}
                     >
-                      <FiSettings className="mr-2" /> Settings
+                      <FiSettings className="mr-2" /> Order
                     </li>
                     <li
                       className="p-2 hover:bg-gray-100 cursor-pointer flex items-center"

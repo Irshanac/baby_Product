@@ -7,8 +7,7 @@ import { Toaster, toast } from 'react-hot-toast';
 
 const Login = () => {
     const [isLogin, setIsLogin] = useState(true);
-    const navigate = useNavigate(); // Hook from React Router
- 
+    const navigate = useNavigate(); 
     const loginInitialValues = { emai: "", password: "" };
     const loginValidationSchema = yup.object({
         email: yup.string().required("Please provide a username").email("please provide a valid email"),
@@ -23,9 +22,7 @@ const Login = () => {
         email: "", 
         password: "", 
         confirmPassword: "", 
-        // cart: [], 
-        // favorites: [], // Corrected spelling
-        // order: []
+        
     };
     const registrationValidationSchema = yup.object({
         name: yup.string().required("Please provide a name"),
@@ -49,7 +46,7 @@ const Login = () => {
           if(values.email==="shanasafeeer159@gmail.com" && values.password==="Admin123")
           {
             toast.success("Admin login successfully complited")
-            localStorage.setItem("name","Shana")
+           // localStorage.setItem("name","Shana")
             navigate("/admin")
           }
           else{
@@ -69,9 +66,11 @@ const Login = () => {
                     return
                 }
                 toast.success("Login successful!");
-                resetForm(); 
-                localStorage.setItem("id", response.data[0].id) // Corrected
-                navigate("/"); 
+                resetForm();
+                localStorage.setItem("id", response.data[0].id);
+                localStorage.setItem("name", response.data[0].name);
+                navigate("/");
+                 
             }
             else {
                 toast.error("Invalid username or password");

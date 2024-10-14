@@ -27,7 +27,7 @@ export const CartProvider = ({ children }) => {
         };
 
         fetchCart();
-    }, []);
+    }, [cart]);
 
  const addToCart = async (product) => {
     const userId = localStorage.getItem("id"); 
@@ -72,7 +72,7 @@ export const CartProvider = ({ children }) => {
     
     // Remove from Cart function
     const removeFromCart = async (productId) => {
-        const userId = localStorage.getItem("id"); // Get user ID
+        const userId = localStorage.getItem("id"); 
         try {
             const newCart=cart.filter((item)=>item.id!==productId)
             setCart(newCart)
@@ -90,16 +90,80 @@ export const CartProvider = ({ children }) => {
 
         try {
             await Promise.all(cart.map(item => axios.patch(`http://localhost:5000/users/${userId}`,{cart:[]})));
-            setCart([]); // Clear cart state
+            setCart([]); 
             toast.success('Cart has been cleared.');
         } catch (err) {
             console.error('Error clearing cart:', err);
             toast.error('Failed to clear the cart. Please try again.');
         }
     };
+//decresingQuantity
+const decresingQuantity = async (proId) => {
+    const userId = localStorage.getItem("id"); 
+    try {
+        const productResponse = await axios.get(`http://localhost:5000/product/${proId}`);
+        const currentProduct = productResponse.data;
+
+        const userResponse = await axios.get(`http://localhost:5000/users/${userId}`);
+        const userCart = userResponse.data.cart;
+
+        // already in the cart
+        const existingCartItem = userCart.find(item => item.id === proId);
+        if (existingCartItem) {
+            if (existingCartItem.quantity === 1) {
+                toast.error(`Cannot decrease quantity below 1.`);
+                return;
+            }
+
+            const updatedCartItem = {
+                ...existingCartItem,
+                quantity: existingCartItem.quantity - 1
+            };
+
+            const remainingCart = userCart.filter((item) => item.id !== updatedCartItem.id);
+            await axios.patch(`http://localhost:5000/users/${userId}`, { cart: [...remainingCart, updatedCartItem] });
+            setCart(prevCart => prevCart.map(item => item.id === proId ? updatedCartItem : item));
+            toast.success(`Decreased quantity of ${currentProduct.name} in the cart.`);
+        } else {
+            toast.error(`Product not found in the cart.`);
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+    //increasingQuantity
+const increasingQuantity = async (proId) => {
+    const userId = localStorage.getItem("id");
+    try {
+        const productResponse = await axios.get(`http://localhost:5000/product/${proId}`);
+        const currentProduct = productResponse.data;
+
+        const userResponse = await axios.get(`http://localhost:5000/users/${userId}`);
+        const userCart = userResponse.data.cart;
+
+        // already in the cart
+        const existingCartItem = userCart.find(item => item.id === proId);
+        if (existingCartItem) {
+
+            const updatedCartItem = {
+                ...existingCartItem,
+                quantity: existingCartItem.quantity + 1
+            };
+
+            const remainingCart = userCart.filter((item) => item.id !== updatedCartItem.id);
+            await axios.patch(`http://localhost:5000/users/${userId}`, { cart: [...remainingCart, updatedCartItem] });
+            setCart(prevCart => prevCart.map(item => item.id === proId ? updatedCartItem : item));
+            toast.success(`Increasing  quantity of ${currentProduct.name} in the cart.`);
+        } else {
+            toast.error(`Product not found in the cart.`);
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+};
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart,setCart, loading, error }}>
+        <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart,setCart, loading, error,decresingQuantity,increasingQuantity}}>
             {loading ? <div>Loading...</div> : children}
         </CartContext.Provider>
     );
