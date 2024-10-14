@@ -5,18 +5,20 @@ export const ContextForAdmin=createContext()
 function AdminContext({children}) {
     const [product,setProduct]=useState([])
     const [category,setCategory]=useState([])
+   
     useEffect(()=>{
         const fetchData = async () => {
             try {
                 const response = await axios.get("http://localhost:5000/product")
                 setProduct(response.data)
+                setCategory([...new Set(response.data.map(p=>p.category))])
                 
             } catch (error) {
                 console.log(error.message)
             }
         }
         fetchData()
-    },[product])
+    },[])
     const addingData=async(newProduct)=>{
         try{
             await axios.post("http://localhost:5000/product",newProduct)
@@ -55,7 +57,7 @@ function AdminContext({children}) {
         }
     }
   return (
-    <ContextForAdmin.Provider value={{product,addingData,deleteProduct,editFormData}}>
+    <ContextForAdmin.Provider value={{product,addingData,deleteProduct,editFormData,category}}>
         {children}
     </ContextForAdmin.Provider>
   )

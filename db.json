@@ -145,8 +145,8 @@
     {
       "name": "Baby kit",
       "price": 340,
-      "quantity": 6,
-      "description": 10,
+      "quantity": 60,
+      "description": 6,
       "category": "Others",
       "url": "https://www.hcpwellness.in/wp-content/uploads/2024/02/babycare.jpg",
       "id": "14"
@@ -155,8 +155,8 @@
       "name": "cotten kuratha",
       "price": 400,
       "quantity": 8,
-      "description": "it is a baby dess",
-      "category": "kit",
+      "description": 8,
+      "category": "Dress",
       "url": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRjlMF4qLc4U2fFJSfqwEi4fbKXbi2DtnxhkY07utxQs55YPeycFKkTkZzF9kNsz7OIZlEYBum81_aE7Z-tdMIAw1QTtxYRB5gqJS3s6qKHGcSqjNt2PpSmHA",
       "id": "140"
     },
@@ -196,6 +196,60 @@
       "description": "this for the student",
       "category": "food",
       "url": "https://www.bigbasket.com/media/uploads/p/xxl/20005378_13-pediasure-nutritional-powder-complete-balanced-premium-chocolate.jpg"
+    },
+    {
+      "name": "max",
+      "price": 1000,
+      "quantity": 10,
+      "description": 10,
+      "category": "Dress",
+      "url": "https://images.meesho.com/images/products/400059299/8huvg_512.webp",
+      "id": "810a"
+    },
+    {
+      "name": "toys",
+      "price": 450,
+      "quantity": 10,
+      "description": 10,
+      "category": "toys",
+      "url": "https://media.post.rvohealth.io/wp-content/uploads/2022/04/UPDATE-1809308-The-Best-Baby-Food-Jars-Pouches-Organic-and-More-1200x628-Facebook-1200x628.jpg",
+      "id": "a1ed"
+    },
+    {
+      "id": "8cc0",
+      "name": "kit",
+      "price": 500,
+      "quantity": 10,
+      "description": "baby kit",
+      "category": "kit",
+      "url": "https://www.momshome.in/cdn/shop/files/14_6ea1bc0e-384b-49ec-91cf-28d90bb0acf5.jpg?v=1725011021"
+    },
+    {
+      "id": "2b5e",
+      "name": "himalaya",
+      "price": 150,
+      "quantity": 10,
+      "description": "himayala product for bababy skin",
+      "category": "other",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPCvIONR3aNpGlPwNUOh8hj547yFEs2mU9pQ&s"
+    },
+    {
+      "name": "baby food",
+      "price": 600,
+      "quantity": 100,
+      "description": 10,
+      "category": "food",
+      "url": "https://images-cdn.ubuy.co.in/6607e2f43b797639e405cb9c-gerber-1st-foods-natural-for-baby-baby.jpg",
+      "id": "fb32"
+    },
+    {
+      "id": "84e0",
+      "name": "baby dess",
+      "price": 800,
+      "quantity": 100,
+      "description": "baby food ",
+      "category": "Dress",
+      "url": "https://www.littlesudhams.com/wp-content/uploads/2023/09/IMG_0548-600x800.jpeg"
     }
   ]
 }

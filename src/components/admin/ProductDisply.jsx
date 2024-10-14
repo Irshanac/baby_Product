@@ -1,11 +1,18 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MdLibraryAdd, MdClose } from "react-icons/md";
 import * as yup from "yup";
 import { ContextForAdmin } from "../../contexts/AdminContext";
-import { ToastContainer } from "react-toastify";
+import { Toaster } from 'react-hot-toast';
 function ProductDisply() {
-  const {product,addingData,deleteProduct,editFormData} = useContext(ContextForAdmin);
+  const {product,addingData,deleteProduct,editFormData,category} = useContext(ContextForAdmin);
+
+  const [addproduct, setAddProduct] = useState(null);
+  const [imagepath, setImagepath] = useState("url");
+  const [openproduct,setOpenProduct]=useState(null);
+  const [edditProduct,setEditProduct]=useState(null);
+  const [filterCategory,setFilterCatgory]=useState([])
+  const [filterProduct,setFilterProducct]=useState([])
 //new product adding form
   const initialValues = {
     name: "",
@@ -40,15 +47,36 @@ const selectEditFormData=(editData)=>{
   setEditProduct(editData)
   
 }
+useEffect(()=>{
+  setFilterCatgory(['All',...category])  
+  console.log(filterCategory)
+  setFilterProducct(product)
+},[product])
+const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const [addproduct, setAddProduct] = useState(null);
-  const [imagepath, setImagepath] = useState("url");
-  const [openproduct,setOpenProduct]=useState(null);
-  const [edditProduct,setEditProduct]=useState(null)
+const handleCategory = (e) => {
+  const value = e.target.value;
+  setSelectedCategory(value);
+  if (value === 'All') {
+    setFilterProducct(product);
+  } else {
+    setFilterProducct(product.filter((item) => item.category === value));
+  }
+};
+
+
   return (
     <div className="relative overflow-x-auto">
-      <ToastContainer/>
-      <div className="flex justify-end m-1">
+      <Toaster/>
+      <div className="flex justify-between m-1">
+      <select value={selectedCategory} onChange={handleCategory} className="p-2 border rounded">
+          {filterCategory.map((cat, index) => (
+            <option key={index} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
+
         <button onClick={() => setAddProduct(true)}>
           <MdLibraryAdd className="text-3xl" />
         </button>
@@ -81,7 +109,7 @@ const selectEditFormData=(editData)=>{
           </tr>
         </thead>
         <tbody>
-          {product.map((item) => (
+          {filterProduct.map((item) => (
             <tr
               key={item.id}
               className="bg-white border-b hover:bg-blue-700 hover:text-white"

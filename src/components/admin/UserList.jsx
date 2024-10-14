@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { UserDataContext } from '../../contexts/UserContext';
 import { MdClose } from "react-icons/md"; 
-
+import { Toaster } from 'react-hot-toast';
 function UserList() {
   const { user, block } = useContext(UserDataContext);
   const [userShow, setUserShow] = useState(null);
 
   return (
     <div>
+      <Toaster/>
       <table className='bg-gray-100 w-full'>
         <thead>
           <tr className='bg-primary/90 text-white'>
